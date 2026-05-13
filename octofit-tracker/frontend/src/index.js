@@ -5,6 +5,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+const codespaceName = process.env.REACT_APP_CODESPACE_NAME;
+const baseApiUrl = codespaceName
+  ? `https://${codespaceName}-8000.app.github.dev/api`
+  : 'http://localhost:8000/api';
+console.log('OctoFit frontend starting');
+console.log('REACT_APP_CODESPACE_NAME:', codespaceName);
+console.log('Backend API base URL:', baseApiUrl);
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
