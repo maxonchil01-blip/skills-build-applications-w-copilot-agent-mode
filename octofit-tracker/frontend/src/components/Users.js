@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react';
 
 const Users = () => {
   const codespaceName = process.env.REACT_APP_CODESPACE_NAME;
+  const codespaceEndpoint = codespaceName
+    ? `https://${codespaceName}-8000.app.github.dev/api/users/`
+    : null;
   const baseApiUrl = codespaceName
     ? `https://${codespaceName}-8000.app.github.dev/api`
     : 'http://localhost:8000/api';
-  const endpoint = `${baseApiUrl}/users/`;
+  const endpoint = codespaceEndpoint || `${baseApiUrl}/users/`;
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [query, setQuery] = useState('');

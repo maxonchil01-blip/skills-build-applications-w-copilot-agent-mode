@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react';
 
 const Workouts = () => {
   const codespaceName = process.env.REACT_APP_CODESPACE_NAME;
+  const codespaceEndpoint = codespaceName
+    ? `https://${codespaceName}-8000.app.github.dev/api/workouts/`
+    : null;
   const baseApiUrl = codespaceName
     ? `https://${codespaceName}-8000.app.github.dev/api`
     : 'http://localhost:8000/api';
-  const endpoint = `${baseApiUrl}/workouts/`;
+  const endpoint = codespaceEndpoint || `${baseApiUrl}/workouts/`;
   const [workouts, setWorkouts] = useState([]);
   const [filteredWorkouts, setFilteredWorkouts] = useState([]);
   const [query, setQuery] = useState('');

@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react';
 
 const Activities = () => {
   const codespaceName = process.env.REACT_APP_CODESPACE_NAME;
+  const codespaceEndpoint = codespaceName
+    ? `https://${codespaceName}-8000.app.github.dev/api/activities/`
+    : null;
   const baseApiUrl = codespaceName
     ? `https://${codespaceName}-8000.app.github.dev/api`
     : 'http://localhost:8000/api';
-  const endpoint = `${baseApiUrl}/activities/`;
+  const endpoint = codespaceEndpoint || `${baseApiUrl}/activities/`;
   const [activities, setActivities] = useState([]);
   const [filteredActivities, setFilteredActivities] = useState([]);
   const [query, setQuery] = useState('');
@@ -13,7 +16,7 @@ const Activities = () => {
   const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState(null);
 
-  const fetchActivities = () => {
+  const fetchActivities = React.useCallback(() => {
     console.log('Fetching Activities from', endpoint);
     fetch(endpoint)
       .then((response) => response.json())
@@ -28,11 +31,11 @@ const Activities = () => {
         console.error('Error fetching activities:', err);
         setError(err.message || 'Failed to fetch activities');
       });
-  };
+  }, [endpoint]);
 
   useEffect(() => {
     fetchActivities();
-  }, [endpoint]);
+  }, [fetchActivities]);
 
   const handleSearch = (event) => {
     event.preventDefault();

@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react';
 
 const Leaderboard = () => {
   const codespaceName = process.env.REACT_APP_CODESPACE_NAME;
+  const codespaceEndpoint = codespaceName
+    ? `https://${codespaceName}-8000.app.github.dev/api/leaderboard/`
+    : null;
   const baseApiUrl = codespaceName
     ? `https://${codespaceName}-8000.app.github.dev/api`
     : 'http://localhost:8000/api';
-  const endpoint = `${baseApiUrl}/leaderboard/`;
+  const endpoint = codespaceEndpoint || `${baseApiUrl}/leaderboard/`;
   const [leaderboard, setLeaderboard] = useState([]);
   const [filteredLeaderboard, setFilteredLeaderboard] = useState([]);
   const [query, setQuery] = useState('');

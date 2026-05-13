@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react';
 
 const Teams = () => {
   const codespaceName = process.env.REACT_APP_CODESPACE_NAME;
+  const codespaceEndpoint = codespaceName
+    ? `https://${codespaceName}-8000.app.github.dev/api/teams/`
+    : null;
   const baseApiUrl = codespaceName
     ? `https://${codespaceName}-8000.app.github.dev/api`
     : 'http://localhost:8000/api';
-  const endpoint = `${baseApiUrl}/teams/`;
+  const endpoint = codespaceEndpoint || `${baseApiUrl}/teams/`;
   const [teams, setTeams] = useState([]);
   const [filteredTeams, setFilteredTeams] = useState([]);
   const [query, setQuery] = useState('');
