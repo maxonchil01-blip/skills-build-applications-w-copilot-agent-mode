@@ -1,0 +1,51 @@
+.App {
+  text-align: center;
+}
+
+body {
+  background: #f5f7fb;
+}
+
+.page-section {
+  margin-top: 1rem;
+}
+
+.page-section .card {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.page-section h2 {
+  margin-bottom: 0.5rem;
+}
+
+.page-section .table-responsive {
+  min-height: 1px;
+}
+
+.table thead th {
+  vertical-align: middle;
+}
+
+.navbar-brand {
+  font-weight: 700;
+}
+
+.nav-link.active {
+  font-weight: 600;
+}
+
+.modal-backdrop.show {
+  opacity: 0.5;
+}
+
+.modal {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.modal-content {
+  border-radius: 0.75rem;
+}
+
+.card .form-control {
+  min-width: 0;
+}
